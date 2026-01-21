@@ -4,5 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  cacheDir: './.vite_cache'
+  cacheDir: './.vite_cache',
+  base: "/dash/",
 })
