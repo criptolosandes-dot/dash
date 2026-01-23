@@ -1,49 +1,49 @@
 {
-  "hash": "bcd7f09b",
+  "hash": "ff28b89a",
   "configHash": "b552299c",
-  "lockfileHash": "1f9db592",
-  "browserHash": "492587ad",
+  "lockfileHash": "fbe11b1c",
+  "browserHash": "bf9a9d6f",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "560ace06",
+      "fileHash": "f3793f8a",
       "needsInterop": true
     },
     "react-dom": {
       "src": "../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "247c7cdf",
+      "fileHash": "926b6482",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "47b4ff7b",
+      "fileHash": "e2526e7e",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "e49594bd",
+      "fileHash": "15cb5b9b",
       "needsInterop": true
     },
     "lightweight-charts": {
       "src": "../../node_modules/lightweight-charts/dist/lightweight-charts.development.mjs",
       "file": "lightweight-charts.js",
-      "fileHash": "bc5b2362",
+      "fileHash": "03847f3f",
       "needsInterop": false
     },
     "lucide-react": {
       "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
       "file": "lucide-react.js",
-      "fileHash": "bcfae862",
+      "fileHash": "be4211ad",
       "needsInterop": false
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "535aa5f7",
+      "fileHash": "038d120f",
       "needsInterop": true
     }
   },

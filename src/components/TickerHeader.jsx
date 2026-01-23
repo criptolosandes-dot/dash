@@ -67,96 +67,102 @@ export const TickerHeader = ({ price = 0, priceChange24h = 0 }) => {
         : '---';
 
     return (
-        <header className="glass-panel-static" style={{ marginBottom: '1.5rem' }}>
-            <div className="flex items-center justify-between" style={{ flexWrap: 'wrap', gap: '1rem' }}>
+        <header className="glass-panel-static">
+            <div className="container flex items-center justify-between gap-8 h-full">
 
-                {/* Logo & Title */}
-                <div className="flex items-center gap-3">
+                {/* Left: Branding */}
+                <div className="flex items-center gap-5">
                     <img
                         src={logo}
                         alt="Cripto Andes Logo"
                         style={{
-                            width: 64,
-                            height: 64,
-                            borderRadius: '12px',
+                            width: 60,
+                            height: 60,
+                            borderRadius: '100%',
                             objectFit: 'cover',
-                            boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)'
+                            border: '1px solid rgba(255,255,255,0.1)'
                         }}
                     />
                     <div>
-                        <h1 style={{ fontSize: '2rem', fontWeight: 800, lineHeight: 1 }}>
-                            CRIPTO <span className="text-gradient-primary">LOS ANDES</span>
+                        <h1 style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '0.5px', lineHeight: 1 }}>
+                            CRIPTO <span style={{ color: '#64748b', fontWeight: 600 }}>LOS</span> <span className="text-gradient-gold">ANDES</span>
                         </h1>
-                        <div className="flex items-center gap-2">
-                            <div className="live-dot"></div>
-                            <span className="text-muted" style={{ fontSize: '0.85rem' }}>DATOS EN TIEMPO REAL</span>
+                        <div className="flex items-center gap-2 mt-1.5">
+                            <div className="live-dot" style={{ width: 6, height: 6 }}></div>
+                            <span style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '2px', color: '#64748b' }}>DATOS EN TIEMPO REAL</span>
                         </div>
                     </div>
                 </div>
 
-                {/* Price Display */}
-                <div className="flex items-center gap-6" style={{ flexWrap: 'wrap' }}>
-                    <div>
-                        <div className="text-muted" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                            BTC/USDT
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span className="font-mono font-bold" style={{ fontSize: '1.75rem', color: 'var(--accent-primary)' }}>
-                                ${formattedPrice}
-                            </span>
-                            <div className={`badge ${isPositive ? 'badge-success' : 'badge-danger'}`}>
-                                {isPositive ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
-                                {isPositive ? '+' : ''}{priceChange24h.toFixed(2)}%
+                {/* Center / Right Group */}
+                <div className="flex items-center gap-12 ml-auto">
+
+                    {/* Price Status */}
+                    <div className="flex flex-col items-end">
+                        <div style={{ fontSize: '0.75rem', letterSpacing: '1px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', marginBottom: '4px', fontFamily: 'var(--font-mono)' }}>BTC / USDT</div>
+                        <div className="flex items-center gap-4">
+                            <span className="font-bold" style={{ fontSize: '2.2rem', color: '#3b82f6', letterSpacing: '-1px', lineHeight: 1 }}>${formattedPrice}</span>
+                            <div className="flex items-center justify-center" style={{
+                                background: 'rgba(16, 185, 129, 0.15)',
+                                border: '1px solid rgba(16, 185, 129, 0.3)',
+                                borderRadius: '8px',
+                                padding: '0.4rem 0.8rem',
+                                color: '#34d399',
+                                fontWeight: 600,
+                                fontSize: '0.9rem',
+                                height: 'fit-content'
+                            }}>
+                                {isPositive ? <TrendingUp size={16} className="mr-1" /> : <TrendingDown size={16} className="mr-1" />}
+                                {Math.abs(priceChange24h).toFixed(2)}%
                             </div>
                         </div>
                     </div>
 
-                    {/* Halving Countdown */}
-                    <div style={{
-                        background: 'rgba(0, 212, 255, 0.1)',
-                        border: '1px solid rgba(0, 212, 255, 0.2)',
-                        borderRadius: '12px',
-                        padding: '0.75rem 1.25rem',
-                        minWidth: '240px'
+                    {/* Halving Box - Dark Teal */}
+                    <div className="flex items-center ml-auto pl-8 pr-8 py-3 rounded-2xl" style={{
+                        background: 'linear-gradient(180deg, rgba(8, 40, 50, 0.5) 0%, rgba(6, 20, 25, 0.8) 100%)',
+                        border: '1px solid rgba(6, 182, 212, 0.15)',
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+                        marginLeft: '40px' // Ensure at least ~1cm spacing visual separation
                     }}>
-                        <div className="flex items-center gap-2 mb-1">
-                            <Clock size={14} className="text-cyan" />
-                            <span style={{ fontSize: '0.7rem', fontWeight: 600, textTransform: 'uppercase' }} className="text-cyan">
-                                Next Halving Countdown
-                            </span>
-                        </div>
-                        <div className="flex gap-4 font-mono">
-                            <div className="text-center">
-                                <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>{countdown.days}</div>
-                                <div className="text-muted" style={{ fontSize: '0.6rem' }}>DAYS</div>
-                            </div>
-                            <div className="text-center">
-                                <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>{String(countdown.hours).padStart(2, '0')}</div>
-                                <div className="text-muted" style={{ fontSize: '0.6rem' }}>HRS</div>
-                            </div>
-                            <div className="text-center">
-                                <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>{String(countdown.mins).padStart(2, '0')}</div>
-                                <div className="text-muted" style={{ fontSize: '0.6rem' }}>MIN</div>
-                            </div>
-                            {/* Current Reward */}
-                            <div className="text-center" style={{ minWidth: '80px' }}>
-                                <div className="flex items-center justify-center gap-1 mb-1">
-                                    <Zap size={12} className="text-warning" />
-                                    <span className="text-muted" style={{ fontSize: '0.7rem' }}>REWARD</span>
+                        <div className="flex items-center gap-10 font-mono">
+                            <div className="flex flex-col items-start mr-4">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <Clock size={14} style={{ color: '#06b6d4' }} />
+                                    <span style={{ fontSize: '0.7rem', letterSpacing: '0.5px', fontWeight: 700, color: '#06b6d4', textTransform: 'uppercase' }}>CUENTA REGRESIVA HALVING</span>
                                 </div>
-                                <div className="font-mono font-bold" style={{ fontSize: '0.9rem', color: 'var(--accent-warning)' }}>
-                                    3.125 ₿
+                                <div className="flex gap-6 text-white">
+                                    <div className="flex flex-col items-center">
+                                        <span style={{ fontSize: '1.5rem', fontWeight: 700, lineHeight: 1 }}>{countdown.days}</span>
+                                        <span style={{ fontSize: '0.6rem', opacity: 0.5, fontWeight: 600, marginTop: '4px' }}>DÍAS</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <span style={{ fontSize: '1.5rem', fontWeight: 700, lineHeight: 1 }}>{String(countdown.hours).padStart(2, '0')}</span>
+                                        <span style={{ fontSize: '0.6rem', opacity: 0.5, fontWeight: 600, marginTop: '4px' }}>HRS</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <span style={{ fontSize: '1.5rem', fontWeight: 700, lineHeight: 1 }}>{String(countdown.mins).padStart(2, '0')}</span>
+                                        <span style={{ fontSize: '0.6rem', opacity: 0.5, fontWeight: 600, marginTop: '4px' }}>MIN</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
-                                <div className="text-muted" style={{ fontSize: '0.6rem' }}>BLOCKS LEFT</div>
-                                <div className="font-bold text-warning" style={{ fontSize: '0.875rem' }}>
-                                    {(1050000 - currentBlock).toLocaleString()}
+
+                            <div className="flex flex-col items-end gap-1 pl-6" style={{ borderLeft: '1px solid rgba(255,255,255,0.1)' }}>
+                                <div className="flex items-center gap-1.5">
+                                    <Zap size={10} style={{ color: '#f59e0b' }} />
+                                    <span style={{ fontSize: '0.6rem', fontWeight: 600, color: '#64748b' }}>RECOMPENSA</span>
+                                </div>
+                                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#f59e0b' }}>3.125 ₿</div>
+                                <div className="flex flex-col items-end">
+                                    <span style={{ fontSize: '0.55rem', fontWeight: 600, color: '#64748b' }}>BLOQUES RESTANTES</span>
+                                    <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#f59e0b' }}>{(NEXT_HALVING_BLOCK - currentBlock).toLocaleString()}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
         </header>
     );

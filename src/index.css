@@ -104,7 +104,7 @@ body::before {
   /* Dark overlay to maintain readability */
   background-image:
     linear-gradient(rgba(7, 11, 16, 0.2), rgba(7, 11, 16, 0.5)),
-    url('/src/assets/background_new.jpg?v=2');
+    url('/src/assets/background-desktop.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -230,30 +230,90 @@ a:hover {
   h1 {
     font-size: 1.75rem;
   }
+
+  /* Mobile Adjustments */
+  .glass-panel {
+    padding: 1.5rem;
+    /* Reduced from 2.5rem */
+  }
+
+  /* Make sure buttons and inputs don't overflow */
+  .btn,
+  .input-dark {
+    width: 100%;
+  }
+
+  /* Section numbers smaller */
+  .section-number {
+    font-size: 4rem;
+    left: -20px;
+  }
 }
 
 /* Glass Panel Component */
 /* Digital Glass Panel */
 /* Moon Theme Glass Panel */
 .glass-panel {
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-card);
+  background: linear-gradient(135deg,
+      rgba(23, 27, 49, 0.4) 0%,
+      rgba(15, 20, 35, 0.2) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-card);
-  padding: 1.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  /* Changed to visible for numbering */
 }
 
 /* Hover Effect for interactive cards */
 .glass-panel:hover {
-  background: var(--bg-card-hover);
-  border-color: rgba(100, 120, 160, 0.3);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  background: rgba(35, 40, 70, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Section Storytelling numbering */
+.section-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.section-number {
+  position: absolute;
+  top: -40px;
+  left: -60px;
+  font-size: 8rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.03);
+  line-height: 1;
+  pointer-events: none;
+  font-family: var(--font-sans);
+  z-index: 0;
+}
+
+.section-line {
+  width: 60px;
+  height: 2px;
+  background: var(--accent-warning);
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 1.5rem;
+  opacity: 0.8;
+}
+
+.section-subtitle {
+  color: var(--accent-warning);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 /* Moon Card specific utility - applies same styles as glass-panel but can be used for extra specificity if needed */
@@ -268,12 +328,28 @@ a:hover {
 
 
 .glass-panel-static {
-  background: rgba(10, 14, 20, 0.85);
+  background: #0a0e14d9;
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 212, 255, 0.15);
+  border: 1px solid rgba(0, 212, 255, .15);
   border-radius: 4px;
-  padding: 1.5rem;
+  padding: 1.5rem 2.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-left: 4px solid var(--accent-secondary);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #f5d142 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Buttons */
@@ -527,6 +603,14 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 .mb-6 {
   margin-bottom: 1.5rem;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
+.mb-24 {
+  margin-bottom: 6rem;
 }
 
 /* Animation Keyframes */

@@ -1,11 +1,14 @@
+import { BarChart2, Calculator, TrendingUp, PieChart, Info, Cpu, BookOpen, Wallet } from 'lucide-react';
 import React from 'react';
-import { BarChart2, Calculator, TrendingUp, PieChart, Info } from 'lucide-react';
 
 export const NavigationMenu = () => {
     const scrollToSection = (id) => {
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            // Fallback for external links or future pages
+            console.log("Section not found:", id);
         }
     };
 
@@ -14,6 +17,9 @@ export const NavigationMenu = () => {
         { id: 'holdings-section', label: 'Holdings Institucionales', icon: PieChart, color: 'var(--accent-purple)' },
         { id: 'dca-section', label: 'Simulador DCA', icon: TrendingUp, color: 'var(--accent-success)' },
         { id: 'calculator-section', label: 'Jubilación Bitcoin', icon: Calculator, color: 'var(--accent-warning)' },
+        { id: 'hashrate-section', label: 'Seguridad de la Red', icon: Cpu, color: '#f97316' },
+        { id: 'wallets-section', label: 'Wallets', icon: Wallet, color: '#10b981' }, // Added Wallets
+        { id: 'learn-more', label: 'Aprender Más', icon: BookOpen, color: '#3b82f6' },
     ];
 
     return (

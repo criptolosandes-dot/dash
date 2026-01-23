@@ -34,6 +34,17 @@ export const FearAndGreedIndex = () => {
         return 'var(--accent-danger)'; // Extreme Fear
     };
 
+    const getSpanishClassification = (classification) => {
+        switch (classification) {
+            case 'Extreme Greed': return 'Avaricia Extrema';
+            case 'Greed': return 'Avaricia';
+            case 'Neutral': return 'Neutral';
+            case 'Fear': return 'Miedo';
+            case 'Extreme Fear': return 'Miedo Extremo';
+            default: return classification;
+        }
+    };
+
     if (loading) return <div className="animate-pulse h-full bg-white/5 rounded-lg"></div>;
 
     const color = getValueColor(data?.value || 0);
@@ -42,7 +53,7 @@ export const FearAndGreedIndex = () => {
         <div className="h-full flex flex-col justify-between">
             <div className="flex items-center gap-2 mb-2">
                 <Gauge size={18} className="text-muted" />
-                <h3 className="text-sm font-bold text-muted uppercase tracking-wider">Fear & Greed</h3>
+                <h3 className="text-sm font-bold text-muted uppercase tracking-wider">Miedo y Avaricia</h3>
             </div>
 
             <div className="flex flex-col items-center justify-center py-4 relative">
@@ -77,13 +88,13 @@ export const FearAndGreedIndex = () => {
                         {data?.value}
                     </span>
                     <p className="text-sm uppercase tracking-widest font-bold mt-1" style={{ color: color }}>
-                        {data?.value_classification}
+                        {getSpanishClassification(data?.value_classification)}
                     </p>
                 </div>
             </div>
 
             <div className="text-center text-muted border-t border-white/5 pt-3 mt-2">
-                Sentiment Market Update
+                Actualización de Sentimiento
             </div>
         </div>
     );
