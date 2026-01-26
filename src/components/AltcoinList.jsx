@@ -1,35 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { TrendingUp, TrendingDown, Activity } from 'lucide-react';
-
-const MOCK_ALTCOINS = [
-    { symbol: 'ETH', name: 'Ethereum', price: 3450.20, change: 2.4 },
-    { symbol: 'SOL', name: 'Solana', price: 145.80, change: 5.1 },
-    { symbol: 'BNB', name: 'Binance Coin', price: 620.15, change: -1.2 },
-    { symbol: 'XRP', name: 'Ripple', price: 2.45, change: 0.8 },
-    { symbol: 'ADA', name: 'Cardano', price: 1.12, change: -0.5 },
-    { symbol: 'AVAX', name: 'Avalanche', price: 42.50, change: 3.2 },
-    { symbol: 'DOGE', name: 'Dogecoin', price: 0.18, change: 1.5 },
-    { symbol: 'DOT', name: 'Polkadot', price: 8.90, change: -2.1 },
-    { symbol: 'LINK', name: 'Chainlink', price: 18.45, change: 4.0 },
-    { symbol: 'MATIC', name: 'Polygon', price: 0.95, change: 0.2 },
-];
+import { useAltcoinPrices } from '../hooks/useAltcoinPrices';
 
 export const AltcoinList = () => {
-    const [coins, setCoins] = useState(MOCK_ALTCOINS);
+    const { coins, loading } = useAltcoinPrices();
 
-    // Simulate live price ticks
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCoins(currentCoins =>
-                currentCoins.map(coin => ({
-                    ...coin,
-                    price: coin.price * (1 + (Math.random() * 0.002 - 0.001)), // +/- 0.1% fluctuation
-                    change: coin.change + (Math.random() * 0.1 - 0.05)
-                }))
-            );
-        }, 3000);
-        return () => clearInterval(interval);
-    }, []);
+    if (loading) {
+        return (
+            <div className="glass-panel h-full flex flex-col items-center justify-center text-muted">
+                <span className="loading loading-spinner loading-md"></span>
+            </div>
+        );
+    }
 
     return (
         <div className="glass-panel h-full flex flex-col">

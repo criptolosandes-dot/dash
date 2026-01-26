@@ -1,4 +1,4 @@
-import { BarChart2, Calculator, TrendingUp, PieChart, Info, Cpu, BookOpen, Wallet } from 'lucide-react';
+import { BarChart2, Calculator, TrendingUp, PieChart, Info, Cpu, BookOpen, Wallet, Globe } from 'lucide-react';
 import React from 'react';
 
 export const NavigationMenu = () => {
@@ -18,6 +18,7 @@ export const NavigationMenu = () => {
         { id: 'dca-section', label: 'Simulador DCA', icon: TrendingUp, color: 'var(--accent-success)' },
         { id: 'calculator-section', label: 'Jubilación Bitcoin', icon: Calculator, color: 'var(--accent-warning)' },
         { id: 'hashrate-section', label: 'Seguridad de la Red', icon: Cpu, color: '#f97316' },
+        { id: 'country-reserves-section', label: 'Reservas de Países', icon: Globe, color: '#3b82f6' }, // Added Country Reserves
         { id: 'wallets-section', label: 'Wallets', icon: Wallet, color: '#10b981' }, // Added Wallets
         { id: 'learn-more', label: 'Aprender Más', icon: BookOpen, color: '#3b82f6' },
     ];

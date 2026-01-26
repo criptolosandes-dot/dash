@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Newspaper, TrendingUp, TrendingDown, Minus, ExternalLink, RefreshCw, Brain, AlertTriangle, Clock } from 'lucide-react';
+import { Newspaper, TrendingUp, TrendingDown, Minus, ExternalLink, RefreshCw, AlertTriangle, Clock } from 'lucide-react';
 
 // Mock news data (simulating CryptoPanic API response)
 const MOCK_NEWS = [
@@ -50,22 +50,7 @@ const MOCK_NEWS = [
     }
 ];
 
-// AI Summary generation (mock - would use actual LLM API)
-const generateAISummary = (news) => {
-    const bullishCount = news.filter(n => n.sentiment === 'bullish').length;
 
-    // Simple logic for the mock summary
-    const summaries = {
-        bullish: '📈 Sentimiento ALCISTA. Fuerte acumulación institucional (BlackRock, MicroStrategy) impulsa el optimismo. La estructura técnica sugiere continuación de tendencia.',
-        bearish: '📉 Sentimiento BAJISTA. Presión de venta por mineros y cautela regulatoria dominan el corto plazo. Soporte clave en $95k está siendo probado.',
-        neutral: '⚖️ Sentimiento MIXTO. El mercado digiere noticias macroeconómicas mientras se consolida en el rango actual. Esperar ruptura confirmada.'
-    };
-
-    return {
-        text: bullishCount >= 3 ? summaries.bullish : summaries.neutral,
-        sentiment: bullishCount >= 3 ? 'bullish' : 'neutral'
-    };
-};
 
 const NewsCard = ({ news }) => {
     const sentimentConfig = {
@@ -162,12 +147,6 @@ const NewsCard = ({ news }) => {
 export const NewsSidebar = () => {
     const [news, setNews] = useState(MOCK_NEWS);
     const [isLoading, setIsLoading] = useState(false);
-    const [aiSummary, setAiSummary] = useState(null);
-
-    useEffect(() => {
-        const summary = generateAISummary(news);
-        setAiSummary(summary);
-    }, [news]);
 
     const refreshNews = () => {
         setIsLoading(true);
@@ -193,21 +172,7 @@ export const NewsSidebar = () => {
                 </button>
             </div>
 
-            {/* AI Summary */}
-            {aiSummary && (
-                <div className="mb-4 relative overflow-hidden rounded-xl border border-cyan/20 bg-cyan/5 p-4 shine-effect">
-                    <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-cyan-400 to-purple-500"></div>
-                    <div className="flex items-center gap-2 mb-2">
-                        <Brain size={16} className="text-cyan" />
-                        <span className="text-xs font-bold uppercase tracking-wider text-cyan">
-                            AI Market Pulse
-                        </span>
-                    </div>
-                    <p className="text-sm leading-relaxed text-gray-300">
-                        {aiSummary.text}
-                    </p>
-                </div>
-            )}
+
 
             {/* News List */}
             <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 -mr-2 space-y-3">

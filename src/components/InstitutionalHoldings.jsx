@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from 'react';
-import { Building2, TrendingUp, Briefcase, Database, ExternalLink, ChevronRight } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Building2, TrendingUp, Briefcase, Database, ExternalLink, RefreshCw } from 'lucide-react';
 
-// ETF Bitcoin Holdings Data (Updated Jan 2026)
+// Fallback ETF Bitcoin Holdings Data (Updated Jan 2026)
 const ETF_HOLDINGS = [
     {
-        id: 1,
+        id: 'ibit',
         name: 'iShares Bitcoin Trust',
         ticker: 'IBIT',
         provider: 'BlackRock',
@@ -13,7 +13,7 @@ const ETF_HOLDINGS = [
         url: 'https://www.blackrock.com/us/financial-professionals/products/bitcoin-etf'
     },
     {
-        id: 2,
+        id: 'gbtc',
         name: 'Grayscale Bitcoin Trust',
         ticker: 'GBTC',
         provider: 'Grayscale',
@@ -22,7 +22,7 @@ const ETF_HOLDINGS = [
         url: 'https://grayscale.com/products/grayscale-bitcoin-trust/'
     },
     {
-        id: 3,
+        id: 'fbtc',
         name: 'Fidelity Wise Origin Bitcoin Fund',
         ticker: 'FBTC',
         provider: 'Fidelity',
@@ -31,7 +31,7 @@ const ETF_HOLDINGS = [
         url: 'https://www.fidelity.com/products/etfs/bitcoin-etf'
     },
     {
-        id: 4,
+        id: 'arkb',
         name: 'ARK 21Shares Bitcoin ETF',
         ticker: 'ARKB',
         provider: 'ARK Invest',
@@ -40,7 +40,7 @@ const ETF_HOLDINGS = [
         url: 'https://ark-funds.com/arkb'
     },
     {
-        id: 5,
+        id: 'bitb',
         name: 'Bitwise Bitcoin ETF',
         ticker: 'BITB',
         provider: 'Bitwise',
@@ -49,7 +49,7 @@ const ETF_HOLDINGS = [
         url: 'https://bitwiseinvestments.com/crypto-funds/bitb'
     },
     {
-        id: 6,
+        id: 'hodl',
         name: 'VanEck Bitcoin Trust',
         ticker: 'HODL',
         provider: 'VanEck',
@@ -58,7 +58,7 @@ const ETF_HOLDINGS = [
         url: 'https://www.vaneck.com/us/en/investments/bitcoin-etf-hodl/'
     },
     {
-        id: 7,
+        id: 'btco',
         name: 'Invesco Galaxy Bitcoin ETF',
         ticker: 'BTCO',
         provider: 'Invesco',
@@ -67,7 +67,7 @@ const ETF_HOLDINGS = [
         url: 'https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=BTCO'
     },
     {
-        id: 8,
+        id: 'ezbc',
         name: 'Franklin Bitcoin ETF',
         ticker: 'EZBC',
         provider: 'Franklin Templeton',
@@ -77,10 +77,10 @@ const ETF_HOLDINGS = [
     }
 ];
 
-// Corporate Bitcoin Holdings Data (Updated Jan 2026)
+// Fallback Corporate Bitcoin Holdings Data (Updated Jan 2026)
 const CORPORATE_HOLDINGS = [
     {
-        id: 1,
+        id: 'microstrategy',
         name: 'MicroStrategy',
         ticker: 'MSTR',
         btcHoldings: 439000,
@@ -89,7 +89,7 @@ const CORPORATE_HOLDINGS = [
         url: 'https://www.microstrategy.com/bitcoin'
     },
     {
-        id: 2,
+        id: 'marathon',
         name: 'Marathon Digital',
         ticker: 'MARA',
         btcHoldings: 34794,
@@ -98,7 +98,7 @@ const CORPORATE_HOLDINGS = [
         url: 'https://marathondh.com/'
     },
     {
-        id: 3,
+        id: 'tesla',
         name: 'Tesla',
         ticker: 'TSLA',
         btcHoldings: 11509,
@@ -107,7 +107,7 @@ const CORPORATE_HOLDINGS = [
         url: 'https://www.tesla.com/'
     },
     {
-        id: 4,
+        id: 'coinbase',
         name: 'Coinbase',
         ticker: 'COIN',
         btcHoldings: 9480,
@@ -116,7 +116,7 @@ const CORPORATE_HOLDINGS = [
         url: 'https://www.coinbase.com/'
     },
     {
-        id: 5,
+        id: 'riot',
         name: 'Riot Platforms',
         ticker: 'RIOT',
         btcHoldings: 10427,
@@ -125,7 +125,7 @@ const CORPORATE_HOLDINGS = [
         url: 'https://www.riotplatforms.com/'
     },
     {
-        id: 6,
+        id: 'block',
         name: 'Block (Square)',
         ticker: 'SQ',
         btcHoldings: 8027,
@@ -134,7 +134,7 @@ const CORPORATE_HOLDINGS = [
         url: 'https://block.xyz/'
     },
     {
-        id: 7,
+        id: 'hut8',
         name: 'Hut 8 Mining',
         ticker: 'HUT',
         btcHoldings: 9102,
@@ -143,7 +143,7 @@ const CORPORATE_HOLDINGS = [
         url: 'https://hut8.com/'
     },
     {
-        id: 8,
+        id: 'cleanspark',
         name: 'CleanSpark',
         ticker: 'CLSK',
         btcHoldings: 8445,
@@ -218,14 +218,16 @@ const HoldingRow = ({ holding, type, currentPrice }) => {
                 )}
             </td>
             <td style={{ padding: '1rem 0.75rem', textAlign: 'center' }}>
-                <a
-                    href={holding.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-cyan hover:text-white transition-colors"
-                >
-                    <ExternalLink size={14} />
-                </a>
+                {holding.url && (
+                    <a
+                        href={holding.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-cyan hover:text-white transition-colors"
+                    >
+                        <ExternalLink size={14} />
+                    </a>
+                )}
             </td>
         </tr>
     );
@@ -233,18 +235,72 @@ const HoldingRow = ({ holding, type, currentPrice }) => {
 
 export const InstitutionalHoldings = ({ currentPrice = 95800 }) => {
     const [activeTab, setActiveTab] = useState('etf'); // 'etf' or 'corporate'
+    const [corporateData, setCorporateData] = useState(CORPORATE_HOLDINGS);
+    const [etfData, setEtfData] = useState(ETF_HOLDINGS);
+    const [loading, setLoading] = useState(false);
+    const [lastUpdated, setLastUpdated] = useState(null);
+
+    const fetchHoldings = async () => {
+        setLoading(true);
+        try {
+            // Using CoinGecko's Public Companies API
+            const response = await fetch('https://api.coingecko.com/api/v3/companies/public_treasury/bitcoin');
+            const data = await response.json();
+
+            if (data && data.companies) {
+                // Map the API data to our structure
+                const mappedCompanies = data.companies.map((company, index) => {
+                    // Try to match with our extensive fallback data for extra fields like URL/Industry
+                    const fallbackMatch = CORPORATE_HOLDINGS.find(c => c.ticker === company.symbol || c.name.toLowerCase().includes(company.name.toLowerCase()));
+
+                    return {
+                        id: `api-corp-${index}`,
+                        name: company.name,
+                        ticker: company.symbol,
+                        btcHoldings: company.total_holdings,
+                        // If API provides entry_value_usd, use it, otherwise use fallback or estimate
+                        avgPrice: fallbackMatch?.avgPrice || (company.total_entry_value_usd / company.total_holdings),
+                        industry: fallbackMatch?.industry || 'Public Company',
+                        url: fallbackMatch?.url || null
+                    };
+                });
+
+                // Prioritize MicroStrategy (MSTR) at the top if found
+                const mstrIndex = mappedCompanies.findIndex(c => c.ticker === 'MSTR');
+                if (mstrIndex > -1) {
+                    const mstr = mappedCompanies.splice(mstrIndex, 1)[0];
+                    mappedCompanies.unshift(mstr);
+                }
+
+                setCorporateData(mappedCompanies.slice(0, 15));
+                setLastUpdated(new Date());
+            }
+        } catch (error) {
+            console.error('Failed to fetch corporate holdings:', error);
+            // On error, keep using the static fallback (which is now updated to Jan 2026 estimates)
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchHoldings();
+        // Refresh every 5 minutes
+        const interval = setInterval(fetchHoldings, 5 * 60 * 1000);
+        return () => clearInterval(interval);
+    }, []);
 
     const totalETFBTC = useMemo(() =>
-        ETF_HOLDINGS.reduce((sum, etf) => sum + etf.btcHoldings, 0),
-        []
+        etfData.reduce((sum, etf) => sum + etf.btcHoldings, 0),
+        [etfData]
     );
 
     const totalCorporateBTC = useMemo(() =>
-        CORPORATE_HOLDINGS.reduce((sum, corp) => sum + corp.btcHoldings, 0),
-        []
+        corporateData.reduce((sum, corp) => sum + corp.btcHoldings, 0),
+        [corporateData]
     );
 
-    const activeData = activeTab === 'etf' ? ETF_HOLDINGS : CORPORATE_HOLDINGS;
+    const activeData = activeTab === 'etf' ? etfData : corporateData;
     const totalBTC = activeTab === 'etf' ? totalETFBTC : totalCorporateBTC;
 
     return (
@@ -259,8 +315,14 @@ export const InstitutionalHoldings = ({ currentPrice = 95800 }) => {
                     <div className="flex items-center gap-2">
                         <Briefcase className="text-primary" size={20} />
                         <h2 className="font-bold text-lg">Holdings Institucionales</h2>
+                        {loading && <RefreshCw size={14} className="animate-spin text-muted" />}
                     </div>
                     <div className="flex items-center gap-2 text-xs">
+                        {lastUpdated && !loading && (
+                            <span className="text-muted mr-2 opacity-60">
+                                {lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            </span>
+                        )}
                         <span className="text-muted">Total:</span>
                         <span className="font-mono font-bold text-warning">
                             {totalBTC.toLocaleString()} BTC
@@ -282,7 +344,7 @@ export const InstitutionalHoldings = ({ currentPrice = 95800 }) => {
                         }}
                     >
                         <Database size={14} style={{ display: 'inline', marginRight: '0.5rem' }} />
-                        ETFs ({ETF_HOLDINGS.length})
+                        ETFs ({etfData.length})
                     </button>
                     <button
                         onClick={() => setActiveTab('corporate')}
@@ -296,7 +358,7 @@ export const InstitutionalHoldings = ({ currentPrice = 95800 }) => {
                         }}
                     >
                         <Building2 size={14} style={{ display: 'inline', marginRight: '0.5rem' }} />
-                        Empresas ({CORPORATE_HOLDINGS.length})
+                        Empresas ({corporateData.length})
                     </button>
                 </div>
             </div>

@@ -11,14 +11,15 @@ import { InstitutionalHoldings } from './components/InstitutionalHoldings'; // A
 import { FearAndGreedIndex } from './components/FearAndGreedIndex';
 import { HashrateDisplay } from './components/HashrateDisplay';
 import { WalletsSection } from './components/WalletsSection';
+import { CountryReserves } from './components/CountryReserves';
 import { LearnMore } from './components/LearnMore';
 
 // Features
 import { PriceChart }
   from './features/Chart/PriceChart';
 import { SpeculativeCalculator } from './features/Calculator/SpeculativeCalculator';
-import { AIPanel } from './features/AI/AIPanel';
 import { DCASimulator } from './features/DCA/DCASimulator';
+import { ScrollToTop } from './components/ScrollToTop';
 
 // Hooks
 import { useBinanceWebSocket } from './hooks/useBinanceWebSocket';
@@ -152,6 +153,14 @@ function App() {
             <SpeculativeCalculator currentPrice={currentPrice} />
           </div>
 
+          {/* New Country Reserves Section */}
+          <div id="country-reserves-section" className="section-wrapper mb-24">
+            <div className="section-subtitle">
+              <span className="section-line"></span> Reservas de Países
+            </div>
+            <CountryReserves currentPrice={currentPrice} />
+          </div>
+
           {/* 6. Hashrate Section - Relocated */}
           <div id="hashrate-section" className="section-wrapper mb-24">
             <div className="section-subtitle">
@@ -181,7 +190,7 @@ function App() {
         </main>
       </div>
 
-      <AIPanel />
+      <ScrollToTop />
       <Footer />
 
       <style>{`

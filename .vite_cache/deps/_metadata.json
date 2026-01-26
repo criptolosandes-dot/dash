@@ -2,52 +2,61 @@
   "hash": "ff28b89a",
   "configHash": "b552299c",
   "lockfileHash": "fbe11b1c",
-  "browserHash": "bf9a9d6f",
+  "browserHash": "39d2cd4b",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "f3793f8a",
+      "fileHash": "5b20f081",
       "needsInterop": true
     },
     "react-dom": {
       "src": "../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "926b6482",
+      "fileHash": "f834f9ed",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "e2526e7e",
+      "fileHash": "b1f6fed8",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "15cb5b9b",
+      "fileHash": "c4d8dcbb",
       "needsInterop": true
     },
     "lightweight-charts": {
       "src": "../../node_modules/lightweight-charts/dist/lightweight-charts.development.mjs",
       "file": "lightweight-charts.js",
-      "fileHash": "03847f3f",
+      "fileHash": "a5185b84",
       "needsInterop": false
     },
     "lucide-react": {
       "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
       "file": "lucide-react.js",
-      "fileHash": "be4211ad",
+      "fileHash": "de1c0fbd",
       "needsInterop": false
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "038d120f",
+      "fileHash": "67a63ae0",
       "needsInterop": true
+    },
+    "framer-motion": {
+      "src": "../../node_modules/framer-motion/dist/es/index.mjs",
+      "file": "framer-motion.js",
+      "fileHash": "7a943eeb",
+      "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-C76DDT7O": {
+      "file": "chunk-C76DDT7O.js"
+    },
     "chunk-7I2UKMSJ": {
       "file": "chunk-7I2UKMSJ.js"
     },

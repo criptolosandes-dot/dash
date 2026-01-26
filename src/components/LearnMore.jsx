@@ -637,7 +637,7 @@ export const LearnMore = () => {
 
                 .topic-content {
                     padding: 0 1.5rem 1.5rem 1.5rem;
-                    color: var(--text-secondary);
+                    color: rgba(255, 255, 255, 0.9); /* Brighter text */
                     line-height: 1.8;
                     font-size: 0.95rem;
                     animation: fadeIn 0.3s ease;
@@ -652,13 +652,19 @@ export const LearnMore = () => {
                     margin: 0 0 1rem 0;
                 }
 
+                .topic-content strong {
+                    color: #fff; /* Pure white for emphasis */
+                    font-weight: 700;
+                }
+
                 .topic-content h4 {
-                    color: var(--text-primary);
-                    font-size: 1rem;
+                    color: #fff; /* Pure white headers */
+                    font-size: 1.1rem; /* Slightly larger */
                     margin: 1.5rem 0 0.75rem 0;
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
+                    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Subtle shadow for clarity */
                 }
 
                 .topic-content ul {
@@ -668,6 +674,7 @@ export const LearnMore = () => {
 
                 .topic-content li {
                     margin-bottom: 0.5rem;
+                    color: rgba(255, 255, 255, 0.85); /* Readable list items */
                 }
 
                 .highlight-box {
@@ -676,6 +683,7 @@ export const LearnMore = () => {
                     padding: 1rem 1.25rem;
                     border-radius: 0 8px 8px 0;
                     margin: 1rem 0;
+                    color: rgba(255, 255, 255, 0.95); /* Bright text inside highlights */
                 }
 
                 .highlight-box.bitcoin-special {
