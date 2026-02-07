@@ -25,7 +25,8 @@ export const CountryReserves = ({ currentPrice = 95800 }) => {
                 </div>
             </div>
 
-            <div className="overflow-x-auto">
+            {/* Desktop Table View */}
+            <div className="overflow-x-auto hide-mobile">
                 <table className="w-full text-sm">
                     <thead>
                         <tr className="text-muted text-xs uppercase tracking-wider border-b border-white/5">
@@ -67,6 +68,38 @@ export const CountryReserves = ({ currentPrice = 95800 }) => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+
+            {/* Mobile Card View */}
+            <div className="grid grid-1 gap-4 hide-desktop"> {/* Increased gap from 3 to 4 */}
+                {COUNTRY_RESERVES.map((item) => (
+                    <div key={`mobile-${item.id}`} className="bg-white/5 p-4 rounded-xl border border-white/5 shadow-sm"> {/* More padding, larger radius */}
+                        <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-3">
+                                <img
+                                    src={`https://flagcdn.com/w40/${item.flagCode}.png`}
+                                    alt={item.country}
+                                    className="w-6 h-4 object-cover rounded shadow-sm"
+                                />
+                                <span className="font-bold text-gray-200 text-lg">{item.country}</span> {/* Larger text */}
+                            </div>
+                            <span className={`text-xs uppercase font-bold px-3 py-1 rounded-full ${item.type === 'Incautado' ? 'bg-red-500/10 text-red-400' :
+                                item.type === 'Minería' ? 'bg-yellow-500/10 text-yellow-400' :
+                                    'bg-green-500/10 text-green-400'
+                                }`}>
+                                {item.type}
+                            </span>
+                        </div>
+                        <div className="flex justify-between items-center text-base mb-2"> {/* Larger text base */}
+                            <div className="text-muted">Holdings:</div>
+                            <div className="font-mono font-bold text-blue-300">{item.btc.toLocaleString()} BTC</div>
+                        </div>
+                        <div className="flex justify-between items-center text-base">
+                            <div className="text-muted">Valor:</div>
+                            <div className="font-mono text-gray-400">${((item.btc * currentPrice) / 1e9).toFixed(2)}B</div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

@@ -4,26 +4,27 @@ import { AlertTriangle, Shield, ExternalLink } from 'lucide-react';
 export const Footer = () => {
     return (
         <footer style={{
-            marginTop: '3rem',
-            padding: '2rem 0',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)'
+            marginTop: '4rem',
+            padding: '3rem 0',
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+            background: 'linear-gradient(to bottom, rgba(7, 11, 16, 0.8), #05070a)'
         }}>
             {/* Disclaimer Box */}
             <div style={{
-                background: 'rgba(255, 170, 0, 0.05)',
-                border: '1px solid rgba(255, 170, 0, 0.15)',
+                background: 'rgba(255, 170, 0, 0.08)',
+                border: '1px solid rgba(255, 170, 0, 0.2)',
                 borderRadius: '16px',
                 padding: '1.5rem 2rem',
-                marginBottom: '2.5rem'
+                marginBottom: '3rem'
             }}>
                 <div className="flex items-start gap-4">
-                    <AlertTriangle size={24} className="text-warning" style={{ flexShrink: 0, marginTop: '4px' }} />
+                    <AlertTriangle size={28} className="text-warning" style={{ flexShrink: 0, marginTop: '4px' }} />
                     <div>
-                        <h3 style={{ fontSize: '1.1rem', fontWeight: 800, marginBottom: '0.5rem', letterSpacing: '0.5px' }} className="text-warning">
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.75rem', letterSpacing: '0.5px' }} className="text-warning">
                             ⚠️ AVISO LEGAL / DISCLAIMER
                         </h3>
-                        <p style={{ fontSize: '1.15rem', lineHeight: 1.7, color: '#ffffff', fontWeight: 400 }}>
-                            Esta herramienta es para <strong style={{ color: 'var(--accent-warning)' }}>fines informativos y especulativos únicamente</strong>.
+                        <p style={{ fontSize: '1.1rem', lineHeight: 1.6, color: '#e2e8f0', fontWeight: 500 }}>
+                            Esta herramienta es para <strong style={{ color: '#fbbf24' }}>fines informativos y especulativos únicamente</strong>.
                             No constituye consejo financiero, de inversión, ni recomendación de compra o venta de activos.
                             Los cálculos y proyecciones mostrados son modelos teóricos basados en fórmulas especulativas
                             y no garantizan resultados futuros. Invertir en criptomonedas conlleva riesgos significativos,
@@ -35,57 +36,61 @@ export const Footer = () => {
             </div>
 
             {/* Footer Links & Info */}
-            <div className="grid grid-3 gap-8" style={{ textAlign: 'center' }}>
-                <div>
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                        <Shield size={14} className="text-muted" />
-                        <span style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase' }} className="text-muted">
+            <div className="grid grid-3 gap-10" style={{ textAlign: 'center' }}>
+                {/* Privacidad */}
+                <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-2 mb-3">
+                        <Shield size={18} className="text-muted" />
+                        <span style={{ fontSize: '1rem', fontWeight: 700, textTransform: 'uppercase', color: '#94a3b8', letterSpacing: '1px' }}>
                             Privacidad
                         </span>
                     </div>
-                    <p style={{ fontSize: '0.75rem' }} className="text-muted">
-                        No almacenamos datos financieros sensibles. Tu privacidad es prioridad.
+                    <p style={{ fontSize: '1.1rem', color: '#cbd5e1', fontWeight: 500 }}>
+                        No almacenamos datos financieros sensibles. <br />
+                        <span style={{ color: '#38bdf8', fontWeight: 600 }}>Tu privacidad es prioridad.</span>
                     </p>
                 </div>
 
-                <div>
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                        <span style={{ fontSize: '1.25rem', color: 'var(--accent-warning)' }}>₿</span>
-                        <span style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase' }} className="text-muted">
+                {/* Branding */}
+                <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-2 mb-3">
+                        <span style={{ fontSize: '1.5rem', color: '#f59e0b' }}>₿</span>
+                        <span style={{ fontSize: '1.1rem', fontWeight: 800, textTransform: 'uppercase', color: '#f8fafc', letterSpacing: '2px' }}>
                             Cripto Andes
                         </span>
                     </div>
-                    <p style={{ fontSize: '0.75rem' }} className="text-muted">
+                    <p style={{ fontSize: '1rem', color: '#cbd5e1', marginBottom: '0.5rem' }}>
                         Dashboard de análisis técnico y fundamental para Bitcoin con sello de los Andes.
                     </p>
-                    <p style={{ fontSize: '0.6875rem', marginTop: '0.5rem' }} className="text-muted">
+                    <p style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: 600 }}>
                         © 2026 - Todos los derechos reservados
                     </p>
                 </div>
 
-                <div>
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                        <ExternalLink size={14} className="text-muted" />
-                        <span style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase' }} className="text-muted">
+                {/* Fuentes */}
+                <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-2 mb-3">
+                        <ExternalLink size={18} className="text-muted" />
+                        <span style={{ fontSize: '1rem', fontWeight: 700, textTransform: 'uppercase', color: '#94a3b8', letterSpacing: '1px' }}>
                             Fuentes de Datos
                         </span>
                     </div>
-                    <div className="flex items-center justify-center gap-3" style={{ fontSize: '0.75rem' }}>
-                        <a href="https://www.binance.com" target="_blank" rel="noopener noreferrer">Binance</a>
+                    <div className="flex items-center gap-3" style={{ fontSize: '1.1rem', fontWeight: 600 }}>
+                        <a href="https://www.binance.com" target="_blank" rel="noopener noreferrer" style={{ color: '#FCD535' }}>Binance</a>
                         <span className="text-muted">•</span>
-                        <a href="https://cryptopanic.com" target="_blank" rel="noopener noreferrer">CryptoPanic</a>
+                        <a href="https://cryptopanic.com" target="_blank" rel="noopener noreferrer" style={{ color: '#38bdf8' }}>CryptoPanic</a>
                         <span className="text-muted">•</span>
-                        <a href="https://blockchain.info" target="_blank" rel="noopener noreferrer">Blockchain.info</a>
+                        <a href="https://blockchain.info" target="_blank" rel="noopener noreferrer" style={{ color: '#F7931A' }}>Blockchain.info</a>
                     </div>
                 </div>
             </div>
 
             {/* Bottom Bar */}
-            <div className="text-center mt-8 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                <p style={{ fontSize: '0.6875rem' }} className="text-muted">
+            <div className="text-center mt-12 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                <p style={{ fontSize: '1rem', color: '#94a3b8' }}>
                     Hecho con 🧡 para la comunidad de Bitcoin |
                     <span style={{ marginLeft: '0.5rem' }}>
-                        Powered by <span className="text-primary">TradingView</span> & <span className="text-cyan">Binance API</span>
+                        Powered by <span className="text-primary font-bold">TradingView</span> & <span className="text-cyan font-bold">Binance API</span>
                     </span>
                 </p>
             </div>

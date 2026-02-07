@@ -1,64 +1,64 @@
 {
-  "hash": "ff28b89a",
+  "hash": "8d18a725",
   "configHash": "b552299c",
-  "lockfileHash": "fbe11b1c",
-  "browserHash": "39d2cd4b",
+  "lockfileHash": "8c99783c",
+  "browserHash": "f3273940",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "5b20f081",
+      "fileHash": "2603bd04",
       "needsInterop": true
     },
     "react-dom": {
       "src": "../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "f834f9ed",
+      "fileHash": "2bee1a27",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "b1f6fed8",
+      "fileHash": "8965a5ad",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "c4d8dcbb",
-      "needsInterop": true
-    },
-    "lightweight-charts": {
-      "src": "../../node_modules/lightweight-charts/dist/lightweight-charts.development.mjs",
-      "file": "lightweight-charts.js",
-      "fileHash": "a5185b84",
-      "needsInterop": false
-    },
-    "lucide-react": {
-      "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
-      "file": "lucide-react.js",
-      "fileHash": "de1c0fbd",
-      "needsInterop": false
-    },
-    "react-dom/client": {
-      "src": "../../node_modules/react-dom/client.js",
-      "file": "react-dom_client.js",
-      "fileHash": "67a63ae0",
+      "fileHash": "58e54c93",
       "needsInterop": true
     },
     "framer-motion": {
       "src": "../../node_modules/framer-motion/dist/es/index.mjs",
       "file": "framer-motion.js",
-      "fileHash": "7a943eeb",
+      "fileHash": "5b5d50f1",
       "needsInterop": false
+    },
+    "lightweight-charts": {
+      "src": "../../node_modules/lightweight-charts/dist/lightweight-charts.development.mjs",
+      "file": "lightweight-charts.js",
+      "fileHash": "40224b09",
+      "needsInterop": false
+    },
+    "lucide-react": {
+      "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
+      "file": "lucide-react.js",
+      "fileHash": "65390784",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "c95e364b",
+      "needsInterop": true
     }
   },
   "chunks": {
-    "chunk-C76DDT7O": {
-      "file": "chunk-C76DDT7O.js"
-    },
     "chunk-7I2UKMSJ": {
       "file": "chunk-7I2UKMSJ.js"
+    },
+    "chunk-C76DDT7O": {
+      "file": "chunk-C76DDT7O.js"
     },
     "chunk-P6RTVJOB": {
       "file": "chunk-P6RTVJOB.js"

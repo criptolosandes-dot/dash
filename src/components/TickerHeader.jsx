@@ -119,7 +119,7 @@ export const TickerHeader = ({ price = 0, priceChange24h = 0 }) => {
                     </div>
 
                     {/* Halving Box - Dark Teal */}
-                    <div className="flex items-center ml-auto pl-8 pr-8 py-3 rounded-2xl" style={{
+                    <div className="flex items-center ml-auto pl-8 pr-8 py-3 rounded-2xl hide-mobile" style={{
                         background: 'linear-gradient(180deg, rgba(8, 40, 50, 0.5) 0%, rgba(6, 20, 25, 0.8) 100%)',
                         border: '1px solid rgba(6, 182, 212, 0.15)',
                         boxShadow: '0 4px 20px rgba(0,0,0,0.2)',

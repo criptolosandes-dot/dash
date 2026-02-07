@@ -68,8 +68,8 @@ body {
   background-color: var(--bg-dark);
   color: var(--text-main);
   font-family: var(--font-sans);
-  font-size: 18px;
-  /* Increased base size from 16px */
+  font-size: 20px;
+  /* Increased from 18px per user request */
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -80,17 +80,28 @@ body {
 /* Text Utilities Re-defined for Accessibility */
 .text-xs {
   font-size: 1rem;
-  /* ~18px relative to 18px base - Increased for readability */
+  /* ~20px relative to 20px base */
 }
 
 .text-sm {
-  font-size: 1rem;
-  /* ~18px base size */
+  font-size: 1.1rem;
+  /* ~22px relative to 20px base */
 }
 
 .text-lg {
-  font-size: 1.25rem;
-  /* ~22.5px */
+  font-size: 1.35rem;
+  /* ~27px */
+}
+
+/* ... (lines omitted) ... */
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: 1600px;
+  /* Increased from 1400px */
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 /* Background Effects */
@@ -185,7 +196,8 @@ a:hover {
 /* Layout Utilities */
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1600px;
+  /* Increased from 1400px */
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -923,6 +935,152 @@ input[type="range"]::-webkit-slider-thumb:active {
   pointer-events: none;
 }
 
-.input-wrapper .input-dark {
-  padding-left: 2.5rem;
+
+/* ===================================
+   MOBILE RESPONSIVE ADAPTATIONS
+   =================================== */
+
+/* Hide/Show utilities */
+.hide-mobile {
+  display: block;
+}
+
+.hide-desktop {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .hide-desktop {
+    display: block !important;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 100px;
+    /* Reduced from 150px for mobile */
+  }
+
+  /* Adjust grid columns for tablet/mobile */
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Reduce base font size for mobile to prevent "too big" feeling */
+  body {
+    font-size: 15px !important;
+    line-height: 1.5;
+  }
+
+  /* Prevent horizontal overflow globally */
+  * {
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
+  /* Stack grids vertically with moderate spacing */
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Container padding - Balance between space and content width */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 100px;
+    /* Space for stacked header */
+    padding-bottom: 3rem;
+    width: 100% !important;
+  }
+
+  /* Glass panels - Compact padding for mobile */
+  .glass-panel {
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* HEADROOM FIXES - Stack items vertically */
+  .glass-panel-static .container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  .header-branding {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+
+  .header-logo {
+    width: 36px;
+    /* Smaller logo */
+    height: 36px;
+  }
+
+  .header-title {
+    font-size: 1rem;
+    /* Smaller title */
+  }
+
+  /* Center price and status */
+  .glass-panel-static .ml-auto {
+    margin-left: 0 !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Price text adjustments */
+  .header-price-display {
+    text-align: center;
+    align-items: center !important;
+  }
+
+
+  .header-title {
+    font-size: 1.1rem;
+  }
+
+  .header-branding {
+    gap: 1rem;
+  }
+
+  /* Make charts taller */
+  .chart-container {
+    min-height: 450px;
+    /* Taller for easier touch interaction */
+  }
+
+  /* Table cells padding */
+  .institutional-table th,
+  .institutional-table td {
+    padding: 0.75rem 0.5rem;
+    /* More vertical padding */
+  }
+
+  /* Ensure inputs are easy to tap */
+  input,
+  button,
+  .btn {
+    min-height: 48px;
+  }
+
+  /* Section headers spacing */
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
 }
