@@ -770,24 +770,33 @@
         const sbClient = supabase.createClient(SB_URL, SB_KEY);
 
         // --- SISTEMA DE HUELLA DIGITAL (FINGERPRINTING) ---
+        // --- FUNCIÓN DE FINGERPRINT ROBUSTA ---
         async function obtenerDeviceId() {
-            let id = localStorage.getItem('ANDES_DEVICE_ID');
-            if (!id) {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                const txt = 'CriptoLosAndes-Soberania';
-                ctx.textBaseline = "alphabetic";
-                ctx.fillStyle = "#f60";
-                ctx.fillRect(125, 1, 62, 20);
-                ctx.fillStyle = "#069";
-                ctx.fillText(txt, 2, 15);
-                ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
-                ctx.fillText(txt, 4, 17);
-                const fingerprint = canvas.toDataURL().slice(-50);
-                id = btoa(navigator.userAgent + screen.width + fingerprint).slice(0, 32);
-                localStorage.setItem('ANDES_DEVICE_ID', id);
-            }
-            return id;
+            // 1. Intentar recuperar ID persistente
+            let storedId = localStorage.getItem('ANDES_DEVICE_ID');
+            if (storedId) return storedId;
+
+            // 2. Generar nuevo ID único (UUID v4 simulado + entropía)
+            const entropy = [
+                navigator.userAgent,
+                screen.width,
+                screen.height,
+                new Date().getTime(),
+                Math.random()
+            ].join('|');
+
+            // Hash simple (SHA-256 light)
+            const msgBuffer = new TextEncoder().encode(entropy);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+            // Guardar ID único (32 chars)
+            const newId = hashHex.substring(0, 32);
+            localStorage.setItem('ANDES_DEVICE_ID', newId);
+
+            console.log("🆕 Nuevo Device ID generado:", newId);
+            return newId;
         }
 
         (function () {
@@ -894,7 +903,7 @@
                 input.value = "";
                 input.placeholder = errorMsg;
 
-                if (debugMsg) alert("Debug Error: " + debugMsg); // Temporal para ver el error real en móvil
+                // if (debugMsg) alert("Debug Error: " + debugMsg); // Eliminado para producción
 
                 setTimeout(() => {
                     input.style.borderColor = "var(--border-glass)";
