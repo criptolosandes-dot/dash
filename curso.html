@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Supabase SDK - Carga diferida -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
         :root {
@@ -873,15 +873,28 @@
                 throw new Error('TOKEN_BANEADO');
 
             } catch (err) {
+                console.error("❌ Error verificando token:", err);
+
                 let errorMsg = "TOKEN INVÁLIDO";
+                let debugMsg = "";
+
                 if (err.message === 'TOKEN_BANEADO') errorMsg = "⛔ LLAVE BANEADA POR COMPARTIR";
-                if (err.message === 'TOKEN_DESACTIVADO') errorMsg = "LLAVE DESACTIVADA";
+                else if (err.message === 'TOKEN_DESACTIVADO') errorMsg = "LLAVE DESACTIVADA";
+                else if (err.message === 'TOKEN_YA_VINCULADO') errorMsg = "VINCULADO A OTRO DISPOSITIVO";
+                else if (err.message === 'TOKEN_INVALIDO') errorMsg = "TOKEN NO ENCONTRADO";
+                else {
+                    // Error desconocido (red, permisos, etc)
+                    debugMsg = err.message;
+                    errorMsg = "ERROR DE CONEXIÓN";
+                }
 
                 input.style.borderColor = "#ff0000";
                 input.style.boxShadow = "0 0 25px rgba(255, 0, 0, 0.4)";
                 input.style.color = "#ff0000";
                 input.value = "";
                 input.placeholder = errorMsg;
+
+                if (debugMsg) alert("Debug Error: " + debugMsg); // Temporal para ver el error real en móvil
 
                 setTimeout(() => {
                     input.style.borderColor = "var(--border-glass)";
