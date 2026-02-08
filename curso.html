@@ -831,55 +831,22 @@
             try {
                 const deviceId = await obtenerDeviceId();
 
-                // 1. Consultar el token en Supabase
+                // 1. Llamada segura a función RPC (Backend Logic)
                 const { data, error } = await sbClient
-                    .from('llaves_acceso')
-                    .select('*')
-                    .eq('token', tokenIngresado)
-                    .single();
+                    .rpc('verificar_acceso_token', {
+                        p_token: tokenIngresado,
+                        p_device_id: deviceId
+                    });
 
-                if (error || !data) throw new Error('TOKEN_INVALIDO');
-                if (!data.esta_activa) throw new Error('TOKEN_DESACTIVADO');
+                if (error || !data) throw new Error(error ? error.message : 'ERROR_CONEXION');
 
-                // 2. Obtener lista de dispositivos autorizados
-                const dispositivosAutorizados = data.dispositivos_autorizados || [];
-
-                // 3. Verificar si el dispositivo actual está autorizado
-                if (dispositivosAutorizados.includes(deviceId)) {
-                    // ✅ Dispositivo ya autorizado
-                    await sbClient
-                        .from('llaves_acceso')
-                        .update({ ultimo_acceso: new Date().toISOString() })
-                        .eq('token', tokenIngresado);
-
-                    unlockAccess();
-                    return;
+                // 2. Procesar respuesta del servidor
+                if (!data.success) {
+                    throw new Error(data.message); // TOKEN_INVALIDO, DESACTIVADO, BANEADO, etc.
                 }
 
-                // 4. Nuevo dispositivo detectado
-                if (dispositivosAutorizados.length < 2) {
-                    // ✅ Espacio disponible: agregar dispositivo
-                    const nuevosDispositivos = [...dispositivosAutorizados, deviceId];
-                    await sbClient
-                        .from('llaves_acceso')
-                        .update({
-                            dispositivos_autorizados: nuevosDispositivos,
-                            ultimo_acceso: new Date().toISOString()
-                        })
-                        .eq('token', tokenIngresado);
-
-                    console.log(`📱 Dispositivo ${dispositivosAutorizados.length + 1}/2 autorizado`);
-                    unlockAccess();
-                    return;
-                }
-
-                // 5. ❌ TERCER DISPOSITIVO DETECTADO → BAN INMEDIATO
-                await sbClient
-                    .from('llaves_acceso')
-                    .update({ esta_activa: false })
-                    .eq('token', tokenIngresado);
-
-                throw new Error('TOKEN_BANEADO');
+                // ✅ Éxito: Acceso concedido o vinculado
+                unlockAccess();
 
             } catch (err) {
                 console.error("❌ Error verificando token:", err);
@@ -903,7 +870,7 @@
                 input.value = "";
                 input.placeholder = errorMsg;
 
-                // if (debugMsg) alert("Debug Error: " + debugMsg); // Eliminado para producción
+                // if (debugMsg) alert("Debug Error: " + debugMsg);
 
                 setTimeout(() => {
                     input.style.borderColor = "var(--border-glass)";
