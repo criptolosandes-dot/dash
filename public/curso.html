@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Supabase SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Supabase SDK - Carga diferida -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 
     <style>
         :root {
@@ -37,7 +37,8 @@
 
         body {
             background-color: #0b0e14;
-            background-image: url('bg-nodes.png');
+            background-image: none;
+            /* Imagen cargará después */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -45,8 +46,13 @@
             color: var(--text-main);
             font-family: 'Urbanist', sans-serif;
             overflow-x: hidden;
-            opacity: 0;
-            transition: opacity 1s ease;
+            opacity: 1;
+            /* Visible inmediatamente */
+            transition: opacity 0.3s ease;
+        }
+
+        body.bg-loaded {
+            background-image: url('bg-nodes.png');
         }
 
         body::before {
@@ -748,6 +754,16 @@
     </a>
 
     <script>
+        // --- CARGA OPTIMIZADA DE IMAGEN DE FONDO ---
+        window.addEventListener('DOMContentLoaded', function () {
+            // Cargar imagen de fondo después de que la página sea interactiva
+            const bgImage = new Image();
+            bgImage.onload = function () {
+                document.body.classList.add('bg-loaded');
+            };
+            bgImage.src = 'bg-nodes.png';
+        });
+
         // --- CONFIGURACIÓN SUPABASE ---
         const SB_URL = "https://usqrulkrvgipxokokvhb.supabase.co";
         const SB_KEY = "sb_publishable_Kw9Y4g07wh416I1sOklJRQ_j9s0acIT";
@@ -782,7 +798,6 @@
         })();
 
         window.onload = function () {
-            document.body.style.opacity = "1";
             const input = document.getElementById('pass-input');
             if (input) {
                 input.focus();
