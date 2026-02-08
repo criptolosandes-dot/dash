@@ -7,58 +7,58 @@
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "2603bd04",
+      "fileHash": "639cbd87",
       "needsInterop": true
     },
     "react-dom": {
       "src": "../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "2bee1a27",
+      "fileHash": "8d926503",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "8965a5ad",
+      "fileHash": "fb3d8b6f",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "58e54c93",
+      "fileHash": "d1eda001",
       "needsInterop": true
     },
     "framer-motion": {
       "src": "../../node_modules/framer-motion/dist/es/index.mjs",
       "file": "framer-motion.js",
-      "fileHash": "5b5d50f1",
+      "fileHash": "37253945",
       "needsInterop": false
     },
     "lightweight-charts": {
       "src": "../../node_modules/lightweight-charts/dist/lightweight-charts.development.mjs",
       "file": "lightweight-charts.js",
-      "fileHash": "40224b09",
+      "fileHash": "a0c916b0",
       "needsInterop": false
     },
     "lucide-react": {
       "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
       "file": "lucide-react.js",
-      "fileHash": "65390784",
+      "fileHash": "fe6e0fb4",
       "needsInterop": false
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "c95e364b",
+      "fileHash": "988cce96",
       "needsInterop": true
     }
   },
   "chunks": {
-    "chunk-7I2UKMSJ": {
-      "file": "chunk-7I2UKMSJ.js"
-    },
     "chunk-C76DDT7O": {
       "file": "chunk-C76DDT7O.js"
+    },
+    "chunk-7I2UKMSJ": {
+      "file": "chunk-7I2UKMSJ.js"
     },
     "chunk-P6RTVJOB": {
       "file": "chunk-P6RTVJOB.js"

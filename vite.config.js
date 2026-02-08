@@ -6,4 +6,7 @@ export default defineConfig({
   plugins: [react()],
   cacheDir: './.vite_cache',
   base: "/dash/",
+  server: {
+    host: true
+  }
 })

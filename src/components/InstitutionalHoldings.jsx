@@ -364,7 +364,7 @@ export const InstitutionalHoldings = ({ currentPrice = 95800 }) => {
             </div>
 
             {/* Holdings Table */}
-            <div style={{ flex: 1, overflowY: 'auto', marginRight: '-1rem', paddingRight: '1rem' }} className="custom-scrollbar">
+            <div style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', marginRight: '-1rem', paddingRight: '1rem' }} className="custom-scrollbar">
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                     <thead
                         style={{

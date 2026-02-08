@@ -1,7 +1,7 @@
 import { BarChart2, Calculator, TrendingUp, PieChart, Info, Cpu, BookOpen, Wallet, Globe } from 'lucide-react';
 import React from 'react';
 
-export const NavigationMenu = () => {
+export const NavigationMenu = ({ onSelect }) => {
     const scrollToSection = (id) => {
         const element = document.getElementById(id);
         if (element) {
@@ -20,7 +20,7 @@ export const NavigationMenu = () => {
         { id: 'hashrate-section', label: 'Seguridad de la Red', icon: Cpu, color: '#f97316' },
         { id: 'country-reserves-section', label: 'Reservas de Países', icon: Globe, color: '#3b82f6' }, // Added Country Reserves
         { id: 'wallets-section', label: 'Wallets', icon: Wallet, color: '#10b981' }, // Added Wallets
-        { id: 'learn-more', label: 'Aprender Más', icon: BookOpen, color: '#3b82f6' },
+        { id: 'learn-more', label: 'Aprender Más', icon: BookOpen, color: '#3b82f6', link: 'curso.html' },
     ];
 
     return (
@@ -35,7 +35,14 @@ export const NavigationMenu = () => {
                     return (
                         <button
                             key={item.id}
-                            onClick={() => scrollToSection(item.id)}
+                            onClick={() => {
+                                if (item.link) {
+                                    window.location.href = item.link;
+                                } else {
+                                    scrollToSection(item.id);
+                                }
+                                if (onSelect) onSelect();
+                            }}
                             className="flex items-center gap-3 p-3 rounded-lg transition-all text-left group"
                             style={{
                                 background: 'transparent',

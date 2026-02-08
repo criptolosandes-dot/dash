@@ -84,7 +84,7 @@ export const TickerHeader = ({ price = 0, priceChange24h = 0 }) => {
                         }}
                     />
                     <div>
-                        <h1 style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '0.5px', lineHeight: 1 }}>
+                        <h1 style={{ fontWeight: 800, letterSpacing: '0.5px', lineHeight: 1 }}>
                             CRIPTO <span style={{ color: '#64748b', fontWeight: 600 }}>LOS</span> <span className="text-gradient-gold">ANDES</span>
                         </h1>
                         <div className="flex items-center gap-2 mt-1.5">
@@ -101,7 +101,7 @@ export const TickerHeader = ({ price = 0, priceChange24h = 0 }) => {
                     <div className="flex flex-col items-end">
                         <div style={{ fontSize: '0.75rem', letterSpacing: '1px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', marginBottom: '4px', fontFamily: 'var(--font-mono)' }}>BTC / USDT</div>
                         <div className="flex items-center gap-4">
-                            <span className="font-bold" style={{ fontSize: '2.2rem', color: '#3b82f6', letterSpacing: '-1px', lineHeight: 1 }}>${formattedPrice}</span>
+                            <span className="font-bold header-price-value" style={{ color: '#3b82f6', letterSpacing: '-1px', lineHeight: 1 }}>${formattedPrice}</span>
                             <div className="flex items-center justify-center" style={{
                                 background: 'rgba(16, 185, 129, 0.15)',
                                 border: '1px solid rgba(16, 185, 129, 0.3)',

@@ -58,23 +58,21 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+html,
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-dark);
   color: var(--text-main);
   font-family: var(--font-sans);
   font-size: 20px;
-  /* Increased from 18px per user request */
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   overflow-x: hidden;
+  /* Prevent horizontal scroll globally */
+  background: transparent;
+  /* Ensure body::before background is visible */
 }
 
 /* Text Utilities Re-defined for Accessibility */
@@ -972,11 +970,19 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --header-height: auto;
+  }
 
-  /* Reduce base font size for mobile to prevent "too big" feeling */
+  /* Reduce base font size for mobile */
   body {
-    font-size: 15px !important;
+    font-size: 16px !important;
     line-height: 1.5;
+  }
+
+  /* Visibility Utilities for Mobile */
+  .hide-mobile {
+    display: none !important;
   }
 
   /* Prevent horizontal overflow globally */
@@ -985,102 +991,423 @@ input[type="range"]::-webkit-slider-thumb:active {
     box-sizing: border-box;
   }
 
-  /* Stack grids vertically with moderate spacing */
-  .grid-2,
-  .grid-3 {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+  /* Refine Image Scaling: Avoid stretching small icons to 100% width */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
   }
 
-  /* Container padding - Balance between space and content width */
+  /* Container padding - Surgical lateral margin (15-20px) */
   .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 100px;
-    /* Space for stacked header */
-    padding-bottom: 3rem;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 100px !important;
+    padding-bottom: 3rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Typography Reduction (-20%) */
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.4rem !important;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.1rem !important;
+  }
+
+  /* Specific sizing for hero and headlines */
+  .text-4xl {
+    font-size: 1.8rem !important;
+  }
+
+  .lg\:text-6xl {
+    font-size: 2rem !important;
+  }
+
+  .text-2xl {
+    font-size: 1.3rem !important;
+  }
+
+  /* Layout Stacking - Enforce 1fr for all grids */
+  .grid,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .chart-row-grid,
+  .moon-dashboard-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    /* Slightly tighter gap */
+  }
+
+  .section-wrapper {
+    margin-bottom: 3rem !important;
+    /* Tighter sections on mobile */
+  }
+
+  /* Ensure cards occupy 100% width */
+  .glass-panel {
+    padding: 1.25rem !important;
+    margin-bottom: 1.25rem !important;
+    width: 100% !important;
+    border-radius: 20px !important;
+  }
+
+  /* Images and Videos: Handle responsibly without global forcing */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  iframe,
+  .video-container {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+
+  /* Header Branding Mobile Optimization */
+  .glass-panel-static {
+    padding: 0.5rem 1rem !important;
+    /* Thinner header */
+    position: fixed !important;
+    top: 0 !important;
+    height: auto !important;
+    border-bottom: 1px solid var(--accent-secondary) !important;
+  }
+
+  .glass-panel-static .container {
+    flex-direction: row !important;
+    /* Keep it horizontal if space allows, or tight column */
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  /* Compact branding logo */
+  .glass-panel-static img {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .glass-panel-static h1 {
+    font-size: 1rem !important;
+    letter-spacing: 0px !important;
+  }
+
+  .glass-panel-static .live-dot+span {
+    font-size: 0.5rem !important;
+    letter-spacing: 1px !important;
+  }
+
+  .header-price-value {
+    font-size: 1.1rem !important;
+  }
+
+  .footer-content {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Section numbers smaller */
+  .section-number {
+    font-size: 4rem !important;
+    left: -10px !important;
+    top: -30px !important;
+    opacity: 0.1 !important;
+  }
+
+  /* Sticky overrides for mobile */
+  .left-sidebar {
+    display: none !important;
+  }
+
+  .center-content {
+    padding: 0 !important;
     width: 100% !important;
   }
 
-  /* Glass panels - Compact padding for mobile */
-  .glass-panel {
-    padding: 1.25rem;
-    margin-bottom: 1.25rem;
-  }
-
-  /* HEADROOM FIXES - Stack items vertically */
-  .glass-panel-static .container {
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 0.75rem !important;
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-  }
-
-  .header-branding {
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 0.25rem;
-  }
-
-  .header-logo {
-    width: 36px;
-    /* Smaller logo */
-    height: 36px;
-  }
-
-  .header-title {
-    font-size: 1rem;
-    /* Smaller title */
-  }
-
-  /* Center price and status */
-  .glass-panel-static .ml-auto {
-    margin-left: 0 !important;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Price text adjustments */
-  .header-price-display {
-    text-align: center;
-    align-items: center !important;
-  }
-
-
-  .header-title {
-    font-size: 1.1rem;
-  }
-
-  .header-branding {
-    gap: 1rem;
-  }
-
-  /* Make charts taller */
-  .chart-container {
-    min-height: 450px;
-    /* Taller for easier touch interaction */
-  }
-
-  /* Table cells padding */
-  .institutional-table th,
-  .institutional-table td {
-    padding: 0.75rem 0.5rem;
-    /* More vertical padding */
-  }
-
-  /* Ensure inputs are easy to tap */
+  /* Inputs and buttons optimization */
   input,
   button,
   .btn {
-    min-height: 48px;
+    min-height: 48px !important;
+    width: 100% !important;
   }
 
-  /* Section headers spacing */
-  h2 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+  /* Fix Mobile Nav size: Don't let it stretch to 100% width */
+  .mobile-nav-toggle {
+    width: auto !important;
+    min-width: 120px !important;
+    min-height: 44px !important;
+  }
+
+  /* Base Typography Mobile Adjustment */
+  html,
+  body {
+    font-size: 16px !important;
+    /* Smaller base for mobile proportionality */
+  }
+
+  /* Footer & Disclaimer Optimization */
+  .footer-disclaimer-box {
+    padding: 1rem 1.25rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .footer-title {
+    font-size: 1rem !important;
+    letter-spacing: 1px !important;
+  }
+
+  .footer-text {
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .footer-branding-title {
+    font-size: 1rem !important;
+    letter-spacing: 2px !important;
+  }
+
+  .footer-data-sources {
+    font-size: 0.9rem !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Chart taller for touch */
+  .chart-container {
+    min-height: 400px !important;
+  }
+}
+
+
+/* WhatsApp Floating Button - Global Styles v2.0 */
+.whatsapp-float {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: white;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  z-index: 9999;
+  transition: all 0.3s ease;
+  animation: pulse-green 2s infinite;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1) rotate(10deg);
+  background-color: #20bd5a;
+}
+
+.whatsapp-icon {
+  width: 40px;
+  height: 40px;
+  fill: white;
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@media (max-width: 992px) {
+  .whatsapp-float {
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    /* Elevated to clear system nav bars */
+    right: 20px;
+    /* Moved inward to avoid curved screen cutoffs */
+  }
+
+  .whatsapp-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Visibility Utilities for Desktop */
+@media (min-width: 769px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* --- DESIGN SYSTEM UTILITIES --- */
+
+/* Color Utilities */
+.text-primary {
+  color: var(--accent-primary) !important;
+}
+
+.text-secondary {
+  color: var(--accent-secondary) !important;
+}
+
+.text-success {
+  color: var(--accent-success) !important;
+}
+
+.text-danger {
+  color: var(--accent-danger) !important;
+}
+
+.text-warning {
+  color: var(--accent-warning) !important;
+}
+
+.text-purple {
+  color: var(--accent-purple) !important;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-cyan {
+  color: var(--accent-secondary) !important;
+}
+
+/* Special Text */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-success {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-danger {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* Buttons & Inputs */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.input-dark {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input-dark:focus {
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Tables */
+.collapse-table {
+  border-collapse: collapse;
+}
+
+.collapse-table td,
+.collapse-table th {
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Animations */
+.animate-slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Utilities Override */
+@media (max-width: 768px) {
+  .mobile-text-sm {
+    font-size: 0.85rem !important;
+  }
+
+  .mobile-text-base {
+    font-size: 1rem !important;
+  }
+
+  .mobile-compact-item {
+    padding: 0.5rem !important;
+    gap: 0.5rem !important;
   }
 }

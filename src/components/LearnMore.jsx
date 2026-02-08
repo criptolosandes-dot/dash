@@ -483,6 +483,9 @@ export const LearnMore = () => {
                     <h2 className="learn-title">Escuela Bitcoin</h2>
                     <p className="learn-subtitle">Aprende sobre Bitcoin de forma sencilla y divertida 🚀</p>
                 </div>
+                <a href="curso.html" className="learn-cta-btn">
+                    🎓 Módulo Avanzado
+                </a>
             </div>
 
             <div className="topics-grid">
@@ -538,6 +541,25 @@ export const LearnMore = () => {
                     background: linear-gradient(135deg, rgba(247, 147, 26, 0.1), rgba(139, 92, 246, 0.1));
                     border-radius: 1rem;
                     border: 1px solid rgba(247, 147, 26, 0.2);
+                    flex-wrap: wrap;
+                }
+
+                .learn-cta-btn {
+                    margin-left: auto;
+                    background: var(--accent-neon, #bfff00);
+                    color: black;
+                    padding: 0.75rem 1.5rem;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-weight: 700;
+                    font-size: 0.9rem;
+                    transition: transform 0.2s, box-shadow 0.2s;
+                    border: 2px solid transparent;
+                }
+
+                .learn-cta-btn:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 0 15px rgba(191, 255, 0, 0.4);
                 }
 
                 .learn-header-icon {

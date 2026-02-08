@@ -79,7 +79,7 @@ export const FearAndGreedIndex = () => {
                 {/* Value */}
                 <div className="text-center mt-[-10px] z-10">
                     <span style={{
-                        fontSize: '3rem',
+                        fontSize: 'max(2.5rem, 4vw)',
                         fontWeight: '800',
                         color: color,
                         textShadow: `0 0 20px ${color}40`,
